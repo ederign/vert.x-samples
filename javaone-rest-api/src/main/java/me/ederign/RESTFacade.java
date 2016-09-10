@@ -18,8 +18,9 @@ public class RESTFacade extends AbstractVerticle {
         if ( httpPort == null || httpPort.isEmpty() ) {
             httpPort = "8080";
         }
+        String servername = System.getProperty( "server.name" );
         if ( serverName == null || serverName.isEmpty() ) {
-            serverName = System.getProperty( "server.name" );
+            serverName = servername;
         }
 
 
