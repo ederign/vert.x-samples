@@ -2,7 +2,6 @@ package me.ederign;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
-import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
@@ -12,6 +11,12 @@ public class RESTFacade extends AbstractVerticle {
 
     @Override
     public void start( Future<Void> fut ) {
+        String httpPort = System.getProperty( "http.port" );
+        System.out.println("---> "  + httpPort);
+        if ( httpPort == null || httpPort.isEmpty() ) {
+            httpPort = "8080";
+        }
+
         Router router = Router.router( vertx );
 
         router.get( "/api/customers.json" ).handler( this::getAll );
@@ -20,7 +25,7 @@ public class RESTFacade extends AbstractVerticle {
                 .createHttpServer()
                 .requestHandler( router::accept )
                 .listen(
-                        config().getInteger( "http.port", 8080 ),
+                        Integer.valueOf( httpPort ),
                         result -> {
                             if ( result.succeeded() ) {
                                 fut.complete();
@@ -34,6 +39,6 @@ public class RESTFacade extends AbstractVerticle {
     private void getAll( RoutingContext routingContext ) {
         routingContext.response()
                 .putHeader( "content-type", "application/json; charset=utf-8" )
-                .end(   generateRandomData( 100, "Legacy System A" ) );
+                .end( generateRandomData( 100, "Legacy System A" ) );
     }
 }
