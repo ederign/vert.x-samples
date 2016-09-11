@@ -1,9 +1,9 @@
 google.charts.load("current", {packages:["corechart"]});
-function drawChart( v8080, v8081, total) {
+function drawChart( s1, s2, total) {
     var data = google.visualization.arrayToDataTable([
         ["Element", "Density", { role: "style" } ],
-        ["S8080", v8080, "#b87333"],
-        ["S8081", v8081, "silver"],
+        ["Server1", s1, "#b87333"],
+        ["Server2", s2, "silver"],
         ["Total", total, "gold"],
     ]);
 

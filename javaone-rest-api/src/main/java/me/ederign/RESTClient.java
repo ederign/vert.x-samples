@@ -10,7 +10,7 @@ import io.vertx.core.json.JsonObject;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class RESTConsumer {
+public class RESTClient {
 
 
     private static Logger logger = Logger.getAnonymousLogger();

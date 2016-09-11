@@ -32,15 +32,15 @@ public class JSBridgeVerticle extends AbstractVerticle {
                 BridgeOptions options = new BridgeOptions()
 
                         .addInboundPermitted(
-                                new PermittedOptions().setAddress( "system.process.out.S8080" ) )
+                                new PermittedOptions().setAddress( "system.process.out.server1" ) )
                         .addInboundPermitted(
-                                new PermittedOptions().setAddress( "system.process.out.S8081" ) )
+                                new PermittedOptions().setAddress( "system.process.out.server2" ) )
                         .addInboundPermitted(
                                 new PermittedOptions().setAddress( "system.process.in" ) )
                         .addOutboundPermitted(
-                                new PermittedOptions().setAddress( "system.process.out.S8080" ) )
+                                new PermittedOptions().setAddress( "system.process.out.server1" ) )
                         .addOutboundPermitted(
-                                new PermittedOptions().setAddress( "system.process.out.S8081" ) )
+                                new PermittedOptions().setAddress( "system.process.out.server2" ) )
                         .addOutboundPermitted(
                                 new PermittedOptions().setAddress( "system.process.in" ) );
                 sockJSHandler.bridge( options );

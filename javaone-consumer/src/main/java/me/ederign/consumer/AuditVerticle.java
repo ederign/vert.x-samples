@@ -16,22 +16,22 @@ public class AuditVerticle {
             Vertx vertx = ar.result();
 
             vertx.eventBus()
-                    .consumer( "system.process.out.S8080",
+                    .consumer( "system.process.out.server1",
                                m -> {
                                    JsonObject json = ( JsonObject ) m.body();
                                    Integer id = json.getInteger(  "id" );
                                    String name = json.getString( "name" );
                                    //add some logic here
-                                   logger.log( Level.INFO, "Audit S8080 " + id + ": " + name );
+                                   logger.log( Level.INFO, "Audit server1 " + id + ": " + name );
                                } );
             vertx.eventBus()
-                    .consumer( "system.process.out.S8081",
+                    .consumer( "system.process.out.server2",
                                m -> {
                                    JsonObject json = ( JsonObject ) m.body();
                                    Integer id = json.getInteger( "id" );
                                    String name = json.getString( "name" );
                                    //add some logic here
-                                   logger.log( Level.INFO, "Audit " + id + ": " + name );
+                                   logger.log( Level.INFO, "Audit server2 " + id + ": " + name );
                                } );
         } );
     }
