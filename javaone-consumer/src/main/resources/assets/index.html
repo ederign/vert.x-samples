@@ -6,26 +6,15 @@
     <script src="lib/jquery-3.1.0.min.js"></script>
     <script src="lib/sockjs.min.js"></script>
     <script src="lib/vertx-eventbus.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="lib/chart.js"></script>
+    <script type="text/javascript" src="lib/app.js"></script>
+
 </head>
 <body>
-<div id="button" data-role="button">Click me</div>
+<div id="barchart_values" style="width: 900px; height: 300px;"></div>
 Events:
 <div id="log"></div>
 
-<script>
-    var eb = new EventBus('http://localhost:8080/eventbus');
-    ;
-    eb.onopen = function () {
-        eb.registerHandler('events', function (err, msg) {
-            $('#log').prepend('<div>'
-                    + msg.body.id + '-' + msg.body.name + '</div>');
-        });
-    };
-    $("#button").click(function () {
-                eb.send('events', {id: '666', name: 'Msg from JS'});
-            }
-    );
-
-</script>
 </body>
 </html>

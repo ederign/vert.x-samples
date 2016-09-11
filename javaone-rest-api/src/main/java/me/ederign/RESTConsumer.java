@@ -21,22 +21,15 @@ public class RESTConsumer {
 
             HttpClient httpClient = vertx.createHttpClient();
 
-            vertx.setPeriodic( 10000, new Handler<Long>() {
-                @Override
-                public void handle( Long event ) {
-                    getDataFromRESTAPIs( httpClient, vertx );
-                }
-            } );
+            vertx.setPeriodic( 10000, event -> getDataFromRESTAPIs( httpClient, vertx, 8080 ) );
+
+            vertx.setPeriodic( 13000, event -> getDataFromRESTAPIs( httpClient, vertx, 8081 ) );
 
         } );
     }
 
-    private static void getDataFromRESTAPIs( HttpClient httpClient, Vertx vertx ) {
-        httpClient.getNow( 8080, "system.com", "/api/customers",
-                           httpClientResponse -> httpClientResponse.bodyHandler( data -> {
-                               processData( vertx, data );
-                           } ) );
-        httpClient.getNow( 8081, "system.com", "/api/customers",
+    private static void getDataFromRESTAPIs( HttpClient httpClient, Vertx vertx , int port) {
+        httpClient.getNow( port, "system.com", "/api/customers",
                            httpClientResponse -> httpClientResponse.bodyHandler( data -> {
                                processData( vertx, data );
                            } ) );
