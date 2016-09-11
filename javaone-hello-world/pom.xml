@@ -32,6 +32,13 @@
       <version>3.3.2</version>
     </dependency>
 
+
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web</artifactId>
+      <version>3.3.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -58,7 +65,7 @@
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
                     <Main-Class>io.vertx.core.Launcher</Main-Class>
-                    <Main-Verticle>me.ederign.HelloWorld</Main-Verticle>
+                    <Main-Verticle>me.ederign.HelloWorldVerticle</Main-Verticle>
                   </manifestEntries>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">

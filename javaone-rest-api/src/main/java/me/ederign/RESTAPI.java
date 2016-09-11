@@ -7,7 +7,7 @@ import io.vertx.ext.web.RoutingContext;
 
 import static me.ederign.util.RandomData.generateRandomData;
 
-public class RESTFacade extends AbstractVerticle {
+public class RESTAPI extends AbstractVerticle {
 
     @Override
     public void start( Future<Void> fut ) {
