@@ -15,13 +15,16 @@ public class ConsumerVerticle {
             Vertx vertx = ar.result();
 
             vertx.eventBus()
-                    .consumer( "events",
+                    .consumer( "system.process.in",
                                m -> {
                                    JsonObject json = ( JsonObject ) m.body();
                                    logger.info( "Receiving "
-                                                        + json.getString( "id" )
+                                                        + json.getInteger( "id" )
                                                         + " : "
-                                                        + json.getString( "name" ) );
+                                                        + json.getString( "name" )
+                                                        + " : "
+                                                        + json.getString( "system" ) );
+
                                } );
         } );
     }

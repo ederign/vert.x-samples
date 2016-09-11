@@ -13,7 +13,7 @@ public class RandomData {
 
     private final static java.util.Random rand = new java.util.Random();
 
-    private final static Set<String> identifiers = new HashSet<String>();
+    private final static Set<String> identifiers = new HashSet<>();
 
     public static String generateRandomData( int numberOfSamples, String system ) {
 
@@ -23,8 +23,7 @@ public class RandomData {
             c.put( c1.getId(), c1 );
         }
 
-        return
-                Json.encodePrettily( c );
+        return  Json.encodePrettily( c );
     }
 
 

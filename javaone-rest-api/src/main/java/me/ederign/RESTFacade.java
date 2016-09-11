@@ -9,21 +9,12 @@ import static me.ederign.util.RandomData.generateRandomData;
 
 public class RESTFacade extends AbstractVerticle {
 
-    private static String SERVER_NAME = "undefined";
-
-
     @Override
     public void start( Future<Void> fut ) {
         String httpPort = System.getProperty( "http.port" );
         if ( httpPort == null || httpPort.isEmpty() ) {
             httpPort = "8080";
         }
-        String servername = System.getProperty( "server.name" );
-        if ( servername == null || servername.isEmpty() ) {
-            SERVER_NAME = servername;
-        }
-
-
         Router router = Router.router( vertx );
 
         router.get( "/api/customers" ).handler( this::getAll );
@@ -46,6 +37,6 @@ public class RESTFacade extends AbstractVerticle {
     private void getAll( RoutingContext routingContext ) {
         routingContext.response()
                 .putHeader( "content-type", "application/json; charset=utf-8" )
-                .end( generateRandomData( 100, SERVER_NAME ) );
+                .end( generateRandomData( 100, System.getProperty( "server.name" ) ) );
     }
 }
