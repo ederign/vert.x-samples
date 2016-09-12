@@ -12,8 +12,7 @@ public class HelloWorldVerticle extends AbstractVerticle {
     @Override
     public void start( Future<Void> fut ) {
 
-        String random = String.valueOf( new Random().nextInt() )
-                ;
+        String random = String.valueOf( new Random().nextInt());
         vertx.setPeriodic( 1000, l -> {
             vertx.eventBus()
                     .publish( "hello-bus", "HelloWorld from " + random );
